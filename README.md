@@ -87,3 +87,5 @@ Car CO2 emissions: 1239.89 g (car 7.47 km)
 - [Digitransit](https://digitransit.fi/)
 - [NAVIT](https://www.navit.com/resources/bus-train-car-or-e-scooter-carbon-emissions-of-transport-modes-ranked): Source for co2 emissions
 
+**DeepSeek-V3 was used to add comments to the code and correct grammar mistakes in the README file.**
+
