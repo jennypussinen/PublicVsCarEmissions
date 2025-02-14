@@ -73,7 +73,7 @@ Enter destination street name: korkeakoulunkatu 1
 Destination coordinates: 61.449775, 23.856846
 
 --- Public transportation route ---
-WALK 106m -> BUS 2132m -> WALK 100m -> TRAM 5247m -> WALK 510m
+WALK 0.11km -> BUS 2.13km -> WALK 0.10km -> TRAM 5.25km -> WALK 0.51km
 --- Car route ---
 WALK 0.05 km -> DRIVE 7.47 km
 

@@ -145,7 +145,7 @@ def format_transportation_options(data):
     for leg in legs:
         mode = leg.get('mode', 'Unknown mode')
         distance = leg.get('distance', 0)
-        formatted_route.append(f"{mode} {distance:.0f}m")
+        formatted_route.append(f"{mode} {distance/1000:.2f}km")
 
         if mode.lower() == 'bus':
             bus_distance += distance
