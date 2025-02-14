@@ -1,6 +1,6 @@
 # Transportation Emissions Comparison
 
-This project is part of the *Sustainable Software Engineering* course (COMP.SE.221) at Tampere University. The objective is to integrate data from two different APIs to compare the CO2 emissions of public transportation (bus, tram, rail) against car travel between two given street addresses.
+This project is part of the *Sustainable Software Engineering* course (COMP.SE.221) at Tampere University. The objective is to integrate data from two different APIs. I chose to compare the CO2 emissions of public transportation (bus, tram, rail) against car travel between two given street addresses.
 
 The project uses the [OpenRouteService](https://openrouteservice.org/) API to fetch driving routes and the [Digitransit](https://digitransit.fi/) API to obtain public transportation options. The emissions for both transportation modes are calculated and compared.
 
