@@ -138,6 +138,7 @@ def format_transportation_options(data):
     formatted_route = []
     bus_distance = 0
     tram_distance = 0
+    rail_distance = 0
     
     # Extract the legs from the response
     legs = data.get('planConnection', {}).get('edges', [])[0].get('node', {}).get('legs', [])
@@ -152,14 +153,37 @@ def format_transportation_options(data):
             bus_distance += distance
         elif mode.lower() == 'tram':
             tram_distance += distance
+        elif mode.lower() == 'rail':
+            rail_distance += distance
     
     # Convert distances from meters to kilometers
     bus_distance_km = (bus_distance / 1000)
     tram_distance_km = (tram_distance / 1000)
+    rail_distance_km = (rail_distance / 1000)
     
     # Print the formatted route and return the total distances
     print(" -> ".join(formatted_route))
-    return bus_distance_km, tram_distance_km
+    return bus_distance_km, tram_distance_km, rail_distance_km
+
+def calculate_emissions(bus_km, tram_km, rail_km, car_km):
+    # values based on https://www.navit.com/resources/bus-train-car-or-e-scooter-carbon-emissions-of-transport-modes-ranked
+    # CO2 emission values based on g/pkm (grams per person-kilometre)
+    car_co2 = 166  # g/pkm for car
+    bus_co2 = 93   # g/pkm for bus
+    rail_co2 = 58  # g/pkm for rail
+    tram_co2 = 63  # g/pkm for tram
+    
+
+    car_emissions = car_co2 * car_km
+    bus_emissions = bus_co2 * bus_km
+    rail_emissions = rail_co2 * rail_km
+    tram_emissions = tram_co2 * tram_km
+
+
+    print(f"Public transportation CO2 emissions: {bus_emissions+tram_emissions+rail_emissions:.2f} g (bus + tram + rail {bus_km + tram_km + rail_km:.2f}km)")
+    print(f"Car CO2 emissions: {car_emissions:.2f} g (car {car_km:.2f}km)")
+
+    
 
 
 try:
@@ -171,10 +195,10 @@ try:
     dLat, dLon = get_lat_lon(destinationStreet)  
     print(dLat, dLon)
 
-    bus_km, tram_km = get_public_transportation_options(oLat, oLon, dLat, dLon)
+    bus_km, tram_km, rail_km = get_public_transportation_options(oLat, oLon, dLat, dLon)
     car_km = get_route(oLat, oLon, dLat, dLon)
 
-    print(bus_km, tram_km, car_km)
+    calculate_emissions(bus_km, tram_km, rail_km, car_km)
 
 except Exception as e:
     print(f"An error occurred: {e}")
